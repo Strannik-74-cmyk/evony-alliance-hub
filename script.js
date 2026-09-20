@@ -1,11 +1,1 @@
-
-const input = document.querySelector('[data-search]');
-if (input) {
-  const rows = [...document.querySelectorAll('[data-searchable]')];
-  input.addEventListener('input', () => {
-    const q = input.value.trim().toLowerCase();
-    rows.forEach(el => {
-      el.style.display = !q || el.textContent.toLowerCase().includes(q) ? '' : 'none';
-    });
-  });
-}
+(()=>{const KEY="evony-lang";function apply(lang){document.documentElement.lang=lang;document.querySelectorAll("[data-ru][data-en]").forEach(e=>{e.textContent=e.dataset[lang]});document.querySelectorAll("[data-placeholder-ru][data-placeholder-en]").forEach(e=>e.placeholder=e.dataset["placeholder-"+lang]);document.querySelectorAll("[data-lang]").forEach(b=>b.classList.toggle("active",b.dataset.lang===lang));localStorage.setItem(KEY,lang)}document.addEventListener("DOMContentLoaded",()=>{const lang=localStorage.getItem(KEY)||"ru";document.querySelectorAll("[data-lang]").forEach(b=>b.addEventListener("click",()=>apply(b.dataset.lang)));apply(lang);const s=document.querySelector("[data-search]");if(s){s.addEventListener("input",()=>{const q=s.value.toLowerCase();document.querySelectorAll("[data-searchable]").forEach(r=>r.style.display=r.textContent.toLowerCase().includes(q)?"":"none")})}})})();
